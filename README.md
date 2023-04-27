@@ -26,7 +26,7 @@ yay -S hyprpicker
 Thunar (File Manager)
 
 ```bash
-thunar thunar-archive-plugin thunar-volman ffmpegthumbnailer tumbler
+thunar thunar-archive-plugin thunar-volman ffmpegthumbnailer tumbler gvfs
 ```
 
 <br>
@@ -68,6 +68,18 @@ mv wallpaper.png ~/Pictures/wallpaper.png
 mv .zshrc ~/.zshrc
 ```
 
+<br>
+
+#### Thunar external disks
+
+1. Launch Thunar and go to Edit > Preferences
+2. Under the 'Advanced' tab, check 'Enable Volume Management'
+3. Click configure and check the following items:
+   - Mount removable drives when hot-plugged.
+   - Mount removable media when inserted.
+
+<br>
+
 ```bash
 reboot
 ```
@@ -75,7 +87,7 @@ reboot
 <br>
 <br>
 
-#### Thats it
+#### That's it
 
 These dotfiles are not mature and are only intended for personal use. Cheers :)
 
