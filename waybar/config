@@ -1,0 +1,84 @@
+{
+    "height": 28,
+    "spacing": 8,
+    "margin": 6,
+    "modules-left": ["custom/playerctl"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "tray"],
+    
+    "custom/playerctl": {
+    "format": "{icon} {}",
+    "return-type": "json",
+    "max-length": 35,
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} ~ {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "on-click": "playerctl play-pause",
+    "format-icons": {
+      "Playing": "<span foreground='#94e2d5'></span>",
+      "Paused": "<span foreground='#f38ba8'></span>"
+    }
+}, 
+    "cpu": {
+        "format": "CPU {usage}%",
+        "tooltip": true
+    },
+    "memory": {
+        "format": "RAM {}%"
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        "on-scroll-up": "light -A 5",
+        "on-scroll-down": "light -U 5",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "interval": 2,
+        "format": "{essid} {ifname} | {bandwidthTotalBytes}",
+        "format-wifi": "{essid} {ifname} | {bandwidthTotalBytes}",
+        "format-ethernet": "{essid} {ifname} | {bandwidthTotalBytes}",
+        "format-disconnected": "Disconnected",
+        "tooltip-format": "{ifname}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click": "alacritty -e nmtui"
+    },
+    "pulseaudio": {
+        //"scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    }
+}
+
